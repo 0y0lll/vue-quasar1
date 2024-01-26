@@ -1,1 +1,16 @@
 // app global css in SCSS form
+@import '../css/quasar.variables.scss';
+
+// styles
+table {
+  thead {
+    background-color: $white-lighter;
+  }
+  th {
+    border-right-width: 1px !important;
+
+    &:last-child {
+      border-right-width: 0 !important;
+    }
+  }
+}

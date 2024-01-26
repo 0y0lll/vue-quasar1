@@ -34,6 +34,7 @@
           clickable
           v-ripple
           :active="link === 'outbox'"
+          :to="{ path: 'outbox' }"
           @click="link = 'outbox'"
           active-class="my-menu-link"
         >
@@ -48,6 +49,7 @@
           clickable
           v-ripple
           :active="link === 'trash'"
+          :to="{ path: 'trash' }"
           @click="link = 'trash'"
           active-class="my-menu-link"
         >
