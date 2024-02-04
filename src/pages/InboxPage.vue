@@ -1,6 +1,10 @@
 <template>
   <div class="q-pa-md">
-    <q-table :rows="rows" :columns="columns" row-key="no" flat bordered />
+    <q-table :rows="rows" :columns="columns" row-key="no" flat bordered>
+      <template v-slot:no-data>
+        <div class="full-width row flex-center">No data</div>
+      </template>
+    </q-table>
 
     <div class="text-right q-mt-md">
       <q-btn unelevated color="primary" label="Add" @click="inception = true" />
@@ -53,7 +57,7 @@ const columns: QTableColumn[] = [
   { name: 'date', label: 'Date', align: 'center', field: 'date' },
 ];
 
-const rows = useStore.getList;
+const rows = ref(useStore.getList);
 
 const generateRandomString = () => {
   return Array.from(
@@ -66,14 +70,15 @@ const generateRandomString = () => {
 const onClick = () => {
   const id = generateRandomString();
   const obj: ListItem = {
-    no: rows.length + 1,
+    no: rows.value.length + 1,
     id: id,
     title: title.value,
     content: content.value,
-    date: DateTime.now(),
+    date: DateTime.now().toFormat('yyyy-MM-dd').toString(),
   };
 
   useStore.setList(useStore.$state, obj);
+  rows.value = useStore.getList;
 
   // inception.value = false;
 };

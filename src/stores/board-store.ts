@@ -6,7 +6,7 @@ export type ListItem = {
   id: string;
   title: string;
   content: string;
-  date: DateTime;
+  date: string;
 };
 
 type StateType = {
